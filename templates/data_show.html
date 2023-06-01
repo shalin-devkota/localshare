@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .form-container {
+            text-align: center;
+        }
+        
+        .form-container textarea {
+            width: 400px;
+            height: 200px;
+            font-size: 16px;
+            padding: 10px;
+            resize: vertical;
+        }
+        
+        .form-container button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-container">
+            <form method="POST">
+                <textarea name="new_data">{{data}}</textarea>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

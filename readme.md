@@ -4,7 +4,7 @@ A very simple flask app to share text among multiple computesr in the same netwo
 
 ## Installation
 
-Assuming you have poetry isntalled in your system. If not, install it from [here](htps://python-poetry.org/)
+Assuming you have poetry isntalled in your system. If not, install it from [here](https://python-poetry.org/)
 
 1. Clone the repository and cd into it.
 2. Run `poetry install` 
@@ -16,4 +16,4 @@ Just enter the  text in the given area. You can now access it from all devices i
 
 
 ## TRY
-You can also try this app [here](shalindevkota.com.np:5002)
+You can also try this app [here](http://shalindevkota.com.np:5002/)

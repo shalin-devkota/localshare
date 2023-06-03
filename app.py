@@ -79,5 +79,18 @@ def download_file(filename):
     return send_file(file_path, as_attachment=True)
 
 
+@app.route("/privacy")
+def privacy():
+    return render_template("privacy.html")
+
+
+@app.route("/mydata")
+def mydata():
+    context = {
+        "ip_address": request.remote_addr,
+    }
+    return render_template("my_data.html", **context)
+
+
 if __name__ == "__main__":
     app.run(debug=True)

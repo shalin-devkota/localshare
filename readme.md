@@ -1,6 +1,6 @@
 # localshare
 
-A very simple flask app to share text among multiple computesr in the same network.
+A very simple flask app to share text among multiple devices in the same network.
 
 ## Installation
 

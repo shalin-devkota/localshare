@@ -1,4 +1,47 @@
-<form action="/" method="POST">
-    <textarea name="new_data"> </textarea>
-    <button type="submit"> Submit </button>
-</form>
+ {% extends 'navbar.html' %}
+
+<head>
+
+</head>
+
+<body>
+
+</body>
+{% block content %}
+
+
+<body>
+    <!-- <div class="container">
+        <div class="form-container">
+            <form method="POST">
+                <textarea name="new_data">{{data}}</textarea>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div> -->
+    <div class="mt-10 text-lg">
+        Start typing or upload a file!
+    </div>
+    <div class="main mt-10 flex justify-center">
+        <form method="POST" enctype="multipart/form-data">
+            <textarea name="new_data" cols="100 " rows="15 " class=" border border-blue-500 border-2 rounded-lg ">{{data}}</textarea> <br>
+            <div class="space-x-4 ">
+
+                <button type="Submit " class="bg-blue-500 text-white font-bold py-2 px-4 rounded ">Submit</button>
+                <button type="file " class="bg-green-500 text-white font-bold py-2 px-4 rounded " id="fileUploadButton">Upload</button>
+            </div>
+            <input type="file" id="fileInput" name="file" style="display: none; ">
+    </div>
+    </form>
+    <script>
+        document.getElementById('fileUploadButton').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            document.getElementById('fileInput').click(); // Trigger the click event on the hidden file input
+        });
+    </script>
+
+</body>
+{% endblock content %}
+
+
+</html>

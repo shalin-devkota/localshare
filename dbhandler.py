@@ -3,7 +3,7 @@ import sqlite3
 conn = sqlite3.connect("main.db")
 cursor = conn.cursor()
 
-cursor.execute("CREATE TABLE IF NOT EXISTS data (ip TEXT PRIMARY KEY, data TEXT )")
+cursor.execute("CREATE TABLE IF NOT EXISTS data (ip TEXT PRIMARY KEY, data TEXT)")
 conn.commit()
 conn.close()
 

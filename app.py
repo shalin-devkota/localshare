@@ -2,6 +2,9 @@ from flask import Flask, request, render_template, redirect, send_file
 from dbhandler import check_for_data, update_or_add
 import os
 from werkzeug.utils import secure_filename
+from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.triggers.interval import IntervalTrigger
+from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
 
 UPLOAD_FOLDER = "uploads"
 ALLOWED_EXTENSIONS = {"txt", "pdf", "png", "jpg", "jpeg"}
@@ -10,12 +13,23 @@ app = Flask(__name__)
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
 
+jobstore = SQLAlchemyJobStore(url="sqlite:///jobs.db")
+
+scheduler = BackgroundScheduler(jobstores={"default": jobstore})
+scheduler.start()
+
+
 def check_for_file(ip):
     file_path = os.path.join(UPLOAD_FOLDER, ip)
     if not os.path.exists(file_path):
         return False
     else:
         return True
+
+
+def delete_file(file_path):
+    if os.path.exists(file_path):
+        os.remove(file_path)
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -33,6 +47,11 @@ def home():
         if user_file.filename != "":
             filename = secure_filename(user_file.filename)
             user_file.save(os.path.join(sub_folder, filename))
+
+            file_path = os.path.join(sub_folder, filename)
+            scheduler.add_job(
+                delete_file, IntervalTrigger(minutes=10), args=[file_path]
+            )
 
         return redirect("/")
     data = check_for_data(req_addr)
